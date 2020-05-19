@@ -20,7 +20,7 @@ class Category(models.Model):
     is_nav = models.BooleanField(default=False, verbose_name='是否为导航')
     owner = models.ForeignKey(User, verbose_name='作者', on_delete=None)
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
-
+    objects = models.Manager()
     class Meta:
         verbose_name = verbose_name_plural = '分类'
 
@@ -72,4 +72,6 @@ class Post(models.Model):
     class Meta:
         verbose_name = verbose_name_plural = '文章'
         ordering = ['-id']
+
+
 
