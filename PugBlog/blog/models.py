@@ -41,7 +41,7 @@ class Tag(models.Model):
                                          choices=STATUS_ITEM, verbose_name='状态')
     owner = models.ForeignKey(User, verbose_name= '作者', on_delete=None)
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
-
+    objects = models.Manager()
     class Meta:
         verbose_name = verbose_name_plural = '标签'
 
@@ -68,6 +68,7 @@ class Post(models.Model):
     tag = models.ManyToManyField(Tag, verbose_name='标签')
     owner = models.ForeignKey(User, verbose_name='作者', on_delete=None)
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
+    objects = models.Manager()
 
     class Meta:
         verbose_name = verbose_name_plural = '文章'

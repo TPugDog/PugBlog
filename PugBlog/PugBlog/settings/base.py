@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['192.168.1.100']
 # Application definition
 
 INSTALLED_APPS = [
+    'PugBlog',
     'blog',
     'config',
     'comment',
