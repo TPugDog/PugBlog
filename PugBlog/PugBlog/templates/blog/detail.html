@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章列表页</title>
+</head>
+<body>
+<div>顶部分类：
+    {% for cate in navs %}
+    <a href="/category/{{ cate.id }}">{{ cate.name }}</a>
+    {% endfor %}
+</div>
 {% if post %}
 <h1>{{ post.title }}</h1>
 <div>
@@ -9,3 +21,16 @@
     {{ post.content }}
 </p>
 {% endif %}
+<div>底部分类：
+    {% for cate in categories %}
+    <a href="/category/{{ cate.id }}">{{ cate.name }}</a>
+    {% endfor %}
+</div>
+<div>侧边栏展示：
+    {% for sidebar in sidebars %}
+        <h4>{{ sidebar.title }}</h4>
+        {{ sidebar.content_html }}
+    {% endfor %}
+</div>
+</body>
+</html>
