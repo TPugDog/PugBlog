@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Tag, Post, Category
 from config.models import SideBar
+from django.views.generic import DetailView
 from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 
@@ -51,16 +52,19 @@ def post_list(request, category_id=None, tag_id=None):
     context.update(Category.get_navs())
     return render(request, 'blog/list.html', context=context)
 
-def post_detail(request, post_id=None):
-    try:
-        post = Post.objects.get(id=post_id)
-    except ObjectDoesNotExist:
-        post = None
+# def post_detail(request, post_id=None):
+#     try:
+#         post = Post.objects.get(id=post_id)
+#     except ObjectDoesNotExist:
+#         post = None
+#
+#     context = {
+#         'post': post,
+#         'sidebars': SideBar.get_all(),
+#     }
+#     context.update(Category.get_navs())
+#     return render(request, 'blog/detail.html', context=context)
 
-    context = {
-        'post': post,
-        'sidebars': SideBar.get_all(),
-    }
-    context.update(Category.get_navs())
-    return render(request, 'blog/detail.html', context=context)
-
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blog/detail.html'
