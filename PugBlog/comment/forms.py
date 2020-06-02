@@ -16,7 +16,7 @@ class CommentForm(forms.ModelForm):
             attrs={'class': 'form=control', 'style': 'width:60%;'}
         )
     )
-    website = forms.CharField(
+    website = forms.URLField(
         label='网站',
         max_length=100,
         widget=forms.widgets.Input(
