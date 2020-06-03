@@ -1,8 +1,8 @@
 <ul>
     {% for comment in comment_list %}
     <li>
-        <a href="{{ comment.target }}">{{ comment.target }}</a> |
-        {{ comment.nickname }} : {{ comment.content }}
+        <a href="{{ comment.target }}">{{ comment.target.title }}</a> |
+        {{ comment.nickname }} : {% autoescape off %}{{ comment.content }}{% endautoescape %}
     </li>
     {% endfor %}
 </ul>

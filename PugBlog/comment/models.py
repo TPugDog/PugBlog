@@ -24,10 +24,10 @@ class Comment(models.Model):
     def get_by_target(cls, target):
         return cls.objects.filter(target=target, status=cls.STATUS_NORMAL)
 
-    # @classmethod
-    # def get_target_title(cls):
+    # @property
+    # def get_target_title(self):
     #     pattern = re.compile(r'([0-9]+)', re.I)
-    #     post_id = pattern.match(cls.target, 6).group(0)
+    #     post_id = pattern.match(self.target, 6).group(0)
     #     post_title = Post.objects.filter(id=post_id)
     #     return post_title
 
