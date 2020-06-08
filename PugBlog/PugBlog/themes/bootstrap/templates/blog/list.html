@@ -25,6 +25,7 @@
                 </a>
                 {% endfor %}
             </span>
+            <span class="card-click"> 点击数：{{ post.pv }}</span>
             <p class="card-text">{{ post.desc }}<a href="{% url 'post-detail' post.id %}">完整内容</a></p>
         </div>
     </div>
