@@ -28,6 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['192.168.1.100']
 
 
+XADMIN_TITLE = 'PugBlog 管理后台'
+XADMIN_FOOTER_TITLE = 'power by TPugDog'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -35,13 +38,14 @@ INSTALLED_APPS = [
     'blog',
     'config',
     'comment',
-
+    'xadmin',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles'
 ]
 
 MIDDLEWARE = [
