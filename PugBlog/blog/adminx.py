@@ -5,21 +5,20 @@ from .adminforms import PostAdminForm
 from django.contrib import admin
 from PugBlog.custom_site import custom_site
 from PugBlog.base_admin import BaseOwnerAdmin
-from django.contrib.admin.models import LogEntry
 from xadmin.layout import Row, Fieldset, Container
 from xadmin.filters import manager, RelatedFieldListFilter
 import xadmin
 # Register your models here.
 
 #在新增A表数据的同时，新增一个B表数据关联到A表的新增数据上
-class PostInline:
-    form_layout = (
-        Container(
-            Row('title', 'desc'),
-        )
-    )
-    extra = 1
-    model = Post
+# class PostInline:
+#     form_layout = (
+#         Container(
+#             Row('title', 'desc'),
+#         )
+#     )
+#     extra = 1
+#     model = Post
 
 
 
@@ -27,24 +26,22 @@ class PostInline:
 class CategoryAdmin(BaseOwnerAdmin):
     list_display = ('name', 'status', 'is_nav', 'created_time', 'post_count')
     fields = ('name', 'status', 'is_nav')
-    def save_model(self, request, obj, form, change):
-        obj.owner = request.user
-        return super(CategoryAdmin, self).save_model(request, obj, form, change)
 
     def post_count(self,obj):
         return obj.post_set.count()
 
     post_count.short_description = '文章数量'
-    inlines = [PostInline, ]
+#    inlines = [PostInline, ]
 
 @xadmin.sites.register(Tag)
 class TagAdmin(BaseOwnerAdmin):
     list_display = ('name', 'status', 'created_time', 'post_count')
     fields = ('name', 'status')
-    
-    def save_model(self, request, obj, form, change):
-        obj.owner = request.user
-        return super(TagAdmin, self).save_model(request, obj, form, change)
+
+    # 继承了BaseOwnerAdmin得save_models，不要重复代码
+    # def save_model(self):
+    #     self.new_obj.owner = self.request.user
+    #     return super().save_model()
 
     def post_count(self,obj):
         return obj.post_set.count()
@@ -141,6 +138,6 @@ class PostAdmin(BaseOwnerAdmin):
     #     js = ('https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.bundle.js', )
 
 
-@admin.register(LogEntry, site=custom_site)
-class LogEntryAdmin(admin.ModelAdmin):
-    list_display = ['object_repr', 'object_id', 'action_flag', 'user', 'change_message']
+# @admin.register(LogEntry, site=custom_site)
+# class LogEntryAdmin(admin.ModelAdmin):
+#     list_display = ['object_repr', 'object_id', 'action_flag', 'user', 'change_message']

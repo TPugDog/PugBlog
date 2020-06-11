@@ -31,6 +31,9 @@ class Comment(models.Model):
     #     post_title = Post.objects.filter(id=post_id)
     #     return post_title
 
+    @staticmethod
+    def get_user_posts(request):
+        return Post.objects.filter(owner=request.user)
 
     class Meta:
         verbose_name = verbose_name_plural = '评论'

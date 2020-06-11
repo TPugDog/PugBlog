@@ -12,7 +12,7 @@ class BaseOwnerAdmin(object):
         qs = super(BaseOwnerAdmin, self).get_list_queryset()
         return qs.filter(owner=request.user)
     
-    def save_model(self):
+    def save_models(self):
         self.new_obj.owner = self.request.user
-        return super().save_model()
+        return super().save_models()
 

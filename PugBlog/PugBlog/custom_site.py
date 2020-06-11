@@ -5,5 +5,5 @@ class CustomSite(AdminSite):
     site_title = 'PugBlog 管理后台'
     index_title = '首页'
 
-custom_site = CustomSite(name='cus_admin')
+custom_site = CustomSite(name='xadmin')
 
